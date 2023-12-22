@@ -1,0 +1,89 @@
+run app on cmd -> set FLASK_APP=market.py -> set FLASK_DEBUG = 1 -> flask run
+
+ 
+Sql with python -> pip install flask-sqlalchemy
+
+// Jinja syntax
+
+{% for item in items %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.barcode}}</td>
+        <td>{{item.price}}</td>
+    </tr>
+{% endfor %}
+
+def market_page():
+    items = [
+        {'id': 1, 'name': 'Phone', 'barcode': '1234', 'price': 500},
+        {'id': 2, 'name': 'Laptop', 'barcode': '8888', 'price': 900},
+        {'id': 3, 'name': 'Keyboard', 'barcode': '5555', 'price': 500}
+    ]
+    return render_template('market.html', items = items)
+
+// BOOTSTRAP CODE
+<table class ="table table-hover table-dark">
+        <thead>
+            <tr>
+                <!-- Your Columns HERE -->
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Barcode</th>
+                <th scope="col">Price</th>
+            </tr>
+            <tbody>
+                <!-- Your rows inside the table HERE: -->
+                <tr>
+                    <td>Value for ID</td>
+                    <td>Value for Name</td>
+                    <td>Value for Barcode</td>
+                    <td>Value for Price</td>
+                </tr>
+            </tbody>
+        </thead>
+
+    </table>
+
+// Database https://sqlitebrowser.org/dl/
+
+from market import db 
+db.create_all()
+from market import Item
+item1 = Item(name="IPhone 10", price=500, barcode='123456789012', description='desc')
+db.session.add(item1)
+db.session.commit()
+
+for item in Item.query.all():
+    item.name
+    item.price
+    item.description
+    item.id
+    item.barcode
+
+//Filter
+
+for item in Item.query.filter_by(price=500):
+    item.name
+
+// Delete all
+
+db.drop_all()
+
+// Create db
+
+from market.models import db
+db.drop_all()
+db.create_all()
+from market.models import User,Item
+u1 = User(username='jsc', password='123456', email_address='jsc@jsc.com')
+db.session.add(u1)
+db.session.commit()
+
+// Installing Flask from
+pip install-wtf
+pip install-wtforms
+
+import os
+os.random(12).hex()
+app.config['SECRET_KEY']='680d06223bae899ff44a5790'

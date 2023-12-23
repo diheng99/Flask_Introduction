@@ -87,3 +87,10 @@ pip install-wtforms
 import os
 os.random(12).hex()
 app.config['SECRET_KEY']='680d06223bae899ff44a5790'
+
+// User password authentication
+
+pip install flask_bcrypt
+
+// User login
+pip install flask_login

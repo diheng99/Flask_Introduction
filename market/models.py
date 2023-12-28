@@ -20,6 +20,9 @@ class User(db.Model, UserMixin):
             return f'${str(self.budget)[:-3]},{str(self.budget)[-3:]}'
         else:
             return f"${self.budget}"
+        
+    def can_purchase(self, item_obj):
+        return self.budget >= item_obj.price
     
     @property
     def password(self):
@@ -43,3 +46,8 @@ class Item(db.Model):
     
     def __repr__(self):
         return f'Item {self.name}'
+    
+    def buy(self, user):
+        self.owner = user.id
+        user.budget -= self.price
+        db.session.commit() 
